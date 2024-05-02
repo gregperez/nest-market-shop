@@ -18,5 +18,10 @@ yarn install
 ```
 docker-compose up -d
 ```
-6. Levantar el proyecto ```yarn start:dev```
 
+6. Ejecutar SEED
+```
+localhost:3000/api/seed
+```
+
+7Levantar el proyecto ```yarn start:dev```
