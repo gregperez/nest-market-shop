@@ -1,5 +1,7 @@
 export interface JwtPayload {
-  email: string;
+  // email: string;
+
+  id: string;
 
   // TODO: add more fields here
 }

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,13 +24,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload): Promise<User> {
-    const { email } = payload;
+    const { id } = payload;
 
-    const user = await this.userRepository.findOneBy({ email });
+    const user = await this.userRepository.findOneBy({ id });
 
-    if (!user) throw new BadRequestException('Token is not valid');
+    if (!user) throw new UnauthorizedException('Token is not valid');
 
-    if (!user.isActive) throw new BadRequestException('User is not active');
+    if (!user.isActive) throw new UnauthorizedException('User is not active');
 
     return user;
   }
