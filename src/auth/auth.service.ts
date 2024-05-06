@@ -12,7 +12,7 @@ import * as bcrypt from 'bcrypt';
 
 import { User } from './entities/user.entity';
 import { CreateUserDto, LoginUserDto } from './dto';
-import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { JwtPayload } from './interfaces/';
 
 @Injectable()
 export class AuthService {
@@ -54,10 +54,10 @@ export class AuthService {
       });
 
       if (!user)
-        throw new UnauthorizedException('Credentials are not valid (email)');
+        throw new UnauthorizedException('Credentials are not valid (email)'); // TODO: loageamos email solo para fines educativos
 
       if (!bcrypt.compareSync(password, user.password))
-        throw new UnauthorizedException('Credentials are not valid (password)');
+        throw new UnauthorizedException('Credentials are not valid (password)'); // TODO: loageamos password solo para fines educativos
 
       return {
         ...user,
